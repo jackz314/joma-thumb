@@ -1,0 +1,103 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="thumbMash">
+<head>
+  <!-- META -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+  <title>Node/Angular thumb App</title>
+
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <style>
+    html          { overflow-y:scroll; }
+    body          { padding-top:50px; }
+    #thumb-list         { margin-bottom:30px; }
+    #thumb-form         { margin-bottom:50px; }
+    .img-wrapper {max-width: 100%; padding-top: 56.25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;}
+
+.jumbotron {
+padding: 15px;
+}
+  </style>
+
+  <!-- SPELLS -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+
+  <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+  <script src="js/services/thumbs.js"></script> <!-- load our thumb service -->
+  <script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+  <div class="container">
+
+    <!-- HEADER AND thumb COUNT -->
+    <div class="jumbotron text-center">
+      <a href="./"><h4>Thumbnails <span class="label label-info">{{ thumbs.length }}</span></h4></a>
+    </div>
+            <p class="text-center" ng-show="loading">
+                <span class="fa fa-spinner fa-spin fa-3x"></span>
+            </p>
+
+
+    <!-- FORM TO CREATE thumbS -->
+    <div id="thumb-form" class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+          <div class="form-group">
+
+            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+            <input type="text" class="form-control input-lg text-center" placeholder="YouTube URL" ng-model="formData.url">
+          </div>
+
+          <!-- createthumb() WILL CREATE NEW thumbS -->
+          <button type="submit" class="btn btn-primary btn-lg" ng-click="createThumb()">Add</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="thumb-form" class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+          <div class="form-group">
+
+            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+            <input type="text" class="form-control input-lg text-center" placeholder="Image URL" ng-model="formData.img">
+<br>
+            <input type="text" class="form-control input-lg text-center" placeholder="Title" ng-model="formData.title">
+          </div>
+
+          <!-- createthumb() WILL CREATE NEW thumbS -->
+          <button type="submit" class="btn btn-primary btn-lg" ng-click="createThumbImg()">Add</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- thumb LIST -->
+    <div id="thumb-list" class="row">
+      <div class="col-sm-4 col-sm-offset-4" ng-repeat="thumb in thumbs">
+                <h4><span class="label label-info">Rating: {{ thumb.rating }}</span>
+                  <span class="label label-danger" ng-click="deleteThumb(thumb._id)">Delete</span> </h4>
+                <div class="img-wrapper" style="background-image: url({{ thumb.img }})"></div>
+                <h5>{{ thumb.title }}</h5>
+
+        <!-- LOOP OVER THE thumbS IN $scope.thumbs -->
+
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
+
