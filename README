@@ -1,0 +1,17 @@
+Make sure you have nodejs, npm and youtube-dl installed
+
+Type the following to install the node modules:
+
+> npm install
+
+Then replace put your own mongodb url in the server.js file
+
+Then start the server like so:
+
+> node server.js
+
+It should be in localhost:8080
+
+To try it out on my server, the link is:
+
+https://thumb-boyie.herokuapp.com/

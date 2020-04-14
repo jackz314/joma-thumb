@@ -8,7 +8,8 @@ var express = require('express'); // call express
 var app = express(); // define our app using express
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-const isImageUrl = require('is-image-url');
+var isImageUrl = require('is-image-url');
+var youtubedl = require('youtube-dl');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -24,19 +25,16 @@ app.use(bodyParser.json({
     type: 'application/vnd.api+json'
 })); // parse application/vnd.api+json as json
 
-var port = process.env.PORT || 5000; // set our port
+var port = process.env.PORT || 8080; // set our port
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://joma:sexyj0ma@ds255253.mlab.com:55253/thumb-dev', {
+mongoose.connect('[INSERT YOUR MONGODB LINK]', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 
 var Thumb = require('./thumb');
-
-const youtubedl = require('youtube-dl');
-
 
 // ROUTES FOR OUR API
 // =============================================================================
